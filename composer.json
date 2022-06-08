@@ -1,0 +1,43 @@
+{
+  "name": "ferdousanam/laravel-developement-kit",
+  "description": "Helpers during laravel development",
+  "keywords": [
+    "ferdousanam",
+    "laravel",
+    "laravel-developement-kit"
+  ],
+  "homepage": "https://github.com/ferdousanam/laravel-developement-kit",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ferdous Anam",
+      "email": "ferdous.anam@gmail.com",
+      "role": "Author"
+    }
+  ],
+  "require": {
+    "php": "^7.3|^8.0",
+    "laravel/framework": ">=6.0",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "barryvdh/laravel-debugbar": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Anam\\DevelopmentKit\\": "src"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Anam\\DevelopmentKit\\DevelopmentKitServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
