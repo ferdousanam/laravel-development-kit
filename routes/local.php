@@ -11,9 +11,28 @@
 
 use Anam\DevelopmentKit\Helpers\MigrationGenerator;
 use Anam\DevelopmentKit\Models\FailedJob;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 
+
+Route::group(['prefix' => 'command'], function () {
+    Route::get('/clear', function () {
+        Artisan::call('optimize:clear');
+        return view('development-kit::command-output', ['output' => Artisan::output()]);
+    });
+
+    Route::get('/storage-link', function () {
+        Artisan::call('storage:link');
+        return view('development-kit::command-output', ['output' => Artisan::output()]);
+    });
+
+    Route::get('/{command}', function (Request $request, $command) {
+        Artisan::call($command, $request->input());
+        return view('development-kit::command-output', ['output' => Artisan::output()]);
+    });
+});
 
 Route::get('/developer', function () {
     return "Welcome Developer";
