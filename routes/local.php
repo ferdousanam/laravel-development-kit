@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 
 
-Route::group(['prefix' => 'command'], function () {
+Route::group(['prefix' => 'artisan'], function () {
     Route::get('/clear', function () {
         Artisan::call('optimize:clear');
         return view('development-kit::command-output', ['output' => Artisan::output()]);
