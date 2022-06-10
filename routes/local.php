@@ -28,10 +28,20 @@ Route::group(['prefix' => 'artisan'], function () {
         return view('development-kit::command-output', ['output' => Artisan::output()]);
     });
 
-    Route::get('/{command}', function (Request $request, $command) {
-        Artisan::call($command, $request->input());
+    Route::get('/{command?}', function (Request $request, $command = null) {
+        Artisan::call($command ?: 'list', $request->input());
         return view('development-kit::command-output', ['output' => Artisan::output()]);
     });
+});
+
+Route::get('/environment-variables/{file?}', function ($file = null) {
+    $env = Dotenv\Dotenv::createArrayBacked(base_path(), $file)->load();
+    return view('development-kit::command-output', ['output' => $env]);
+});
+
+Route::get('/config-variables/{file?}', function ($file = null) {
+    $output = $file ? config($file) : config()->all();
+    return view('development-kit::command-output', ['output' => $output]);
 });
 
 Route::get('/developer', function () {
