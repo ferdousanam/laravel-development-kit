@@ -23,11 +23,6 @@ Route::group(['prefix' => 'artisan'], function () {
         return view('development-kit::command-output', ['output' => Artisan::output()]);
     });
 
-    Route::get('/storage-link', function () {
-        Artisan::call('storage:link');
-        return view('development-kit::command-output', ['output' => Artisan::output()]);
-    });
-
     Route::get('/{command?}', function (Request $request, $command = null) {
         Artisan::call($command ?: 'list', $request->input());
         return view('development-kit::command-output', ['output' => Artisan::output()]);
@@ -48,7 +43,7 @@ Route::get('/developer', function () {
     return "Welcome Developer";
 });
 
-Route::get('generate-migration/{file?}', function ($file = null) {
+Route::get('/generate-migration/{file?}', function ($file = null) {
     $migrator = new MigrationGenerator();
     if ($file) {
         return $migrator->generateMigrationFromFile(database_path("migrations/$file.php"));
