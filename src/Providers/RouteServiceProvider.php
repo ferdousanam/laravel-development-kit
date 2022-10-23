@@ -24,7 +24,8 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         if (file_exists($file = (base_path('routes/local.php')))) {
-            Route::middleware('web')
+            Route::middleware(array_merge(['web'], config('development-kit.route.attributes.middleware')))
+                ->prefix(config('development-kit.route.attributes.prefix'))
                 ->namespace($this->namespace)
                 ->group($file);
         }

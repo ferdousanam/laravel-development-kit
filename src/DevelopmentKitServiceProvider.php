@@ -14,9 +14,14 @@ class DevelopmentKitServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->publishes([
-            __DIR__ . '/../publish/routes' => base_path('routes'),
-        ], 'development-kit');
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../config/development-kit.php' => config_path('development-kit.php'),
+                __DIR__ . '/../publish/routes' => base_path('routes'),
+            ], 'development-kit');
+        }
+
+        $this->mergeConfigFrom(__DIR__.'/../config/development-kit.php', 'development-kit');
     }
 
     /**
