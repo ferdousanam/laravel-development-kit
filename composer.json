@@ -1,12 +1,12 @@
 {
-  "name": "ferdousanam/laravel-developement-kit",
+  "name": "ferdousanam/laravel-development-kit",
   "description": "Helpers during laravel development",
   "keywords": [
     "ferdousanam",
     "laravel",
     "laravel-developement-kit"
   ],
-  "homepage": "https://github.com/ferdousanam/laravel-developement-kit",
+  "homepage": "https://github.com/ferdousanam/laravel-development-kit",
   "license": "MIT",
   "authors": [
     {

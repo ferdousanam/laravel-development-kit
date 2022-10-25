@@ -12,7 +12,7 @@ return [
         'attributes' => [
             'prefix' => '',
 
-            'middleware' => env('DEVELOPMENT_KIT_MIDDLEWARE') ? explode(',', env('DEVELOPMENT_KIT_MIDDLEWARE')) : null,
+            'middleware' => explode(',', env('DEVELOPMENT_KIT_MIDDLEWARE', '')),
         ],
     ],
 

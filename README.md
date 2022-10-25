@@ -1,5 +1,10 @@
-# Laravel Developement Kit
+# Laravel Development Kit
 
+## Run the composer command to install
+
+```shell
+composer require ferdousanam/laravel-development-kit
+```
 
 ## Available Routes
 
@@ -24,3 +29,11 @@ Run the following command to publish `local.php` route file
 ```bash
 php artisan vendor:publish --tag=development-kit
 ```
+
+## Dev Instruction
+[DEV.md](DEV.md)
+
+## Author
+
+Contact Author if interested for author as author is too lazy to write documentation
+🙁 [Ferdous Anam](https://ferdousanam.gitlab.io).
