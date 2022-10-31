@@ -63,6 +63,14 @@ Route::group([
         return sprintf('protected $fillable = [%s];', implode(', ', $wrapColumns));
     });
 
+    Route::get('/model-fillable-columns/{table}', function ($model) {
+        $wrapColumns = array_map(function ($item) {
+            return "'$item'";
+        }, array_diff(Schema::getColumnListing((new ('\\App\\Models\\' . $model))->getTable()), ["id", "created_at", "updated_at", "deleted_at"]));
+
+        return sprintf('protected $fillable = [%s];', implode(', ', $wrapColumns));
+    });
+
     Route::get('/failed-jobs/{id}', function ($id) {
         $job = FailedJob::select('payload')->find($id);
         dd($job->toArray());
