@@ -66,7 +66,7 @@ Route::group([
     Route::get('/model-fillable-columns/{table}', function ($model) {
         $wrapColumns = array_map(function ($item) {
             return "'$item'";
-        }, array_diff(Schema::getColumnListing((new ('\\App\\Models\\' . $model))->getTable()), ["id", "created_at", "updated_at", "deleted_at"]));
+        }, array_diff(Schema::getColumnListing((new (str_replace('User', $model, config('auth.providers.users.model'))))->getTable()), ["id", "created_at", "updated_at", "deleted_at"]));
 
         return sprintf('protected $fillable = [%s];', implode(', ', $wrapColumns));
     });
