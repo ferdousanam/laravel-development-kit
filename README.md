@@ -39,8 +39,12 @@ php artisan vendor:publish --tag=development-kit
 
 ## Author
 
-Contact Author if interested for author as author is too lazy to write documentation
+Contact Author if interested for this package as author is too lazy to write documentation
 🙁 [Ferdous Anam](https://ferdousanam.gitlab.io).
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
 [ico-version]: https://img.shields.io/packagist/v/ferdousanam/laravel-development-kit?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/ferdousanam/laravel-development-kit?style=flat-square
