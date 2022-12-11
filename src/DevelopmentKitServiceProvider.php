@@ -33,10 +33,6 @@ class DevelopmentKitServiceProvider extends ServiceProvider
     {
         $this->app->register(RouteServiceProvider::class);
 
-        if ($this->app->environment() == 'local') {
-            $this->loadRoutesFrom(__DIR__ . '/../routes/local.php');
-        }
-
         $this->loadViewsFrom(__DIR__ . '/../views', 'development-kit');
     }
 }

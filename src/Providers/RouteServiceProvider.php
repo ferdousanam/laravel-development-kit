@@ -2,11 +2,13 @@
 
 namespace Anam\DevelopmentKit\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
+    protected $middlewares = ['web'];
+
     /**
      * The controller namespace for the application.
      *
@@ -15,6 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string|null
      */
     // protected $namespace = 'App\\Http\\Controllers';
+    protected $namespace;
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -23,11 +26,20 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (!empty($middlewares = config('development-kit.route.attributes.middleware'))) {
+            $this->middlewares = array_merge($this->middlewares, explode(',', $middlewares));
+        }
+
         if (file_exists($file = (base_path('routes/local.php')))) {
-            Route::middleware(array_merge(['web'], config('development-kit.route.attributes.middleware')))
+            Route::middleware($this->middlewares)
                 ->prefix(config('development-kit.route.attributes.prefix'))
-                ->namespace($this->namespace)
-                ->group($file);
+                ->namespace($this->namespace)->group($file);
+        }
+
+        if ($this->app->environment() == 'local') {
+            Route::middleware($this->middlewares)
+                ->prefix(config('development-kit.route.attributes.prefix'))
+                ->namespace($this->namespace)->group(__DIR__ . '/../../routes/local.php');
         }
     }
 }
